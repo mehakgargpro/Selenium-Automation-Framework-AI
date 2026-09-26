@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>Flipkart Selenium Framework</name>
-    <description>Reusable Selenium automation framework for Flipkart with API, DB, reporting, and configuration support.</description>
+    <description>Selenium UI automation framework for Flipkart with reporting and configuration support.</description>
 
     <properties>
         <maven.compiler.release>25</maven.compiler.release>
@@ -18,7 +18,6 @@
         <testng.version>7.10.2</testng.version>
         <selenium.version>4.27.0</selenium.version>
         <webdrivermanager.version>5.9.2</webdrivermanager.version>
-        <restassured.version>5.5.1</restassured.version>
         <jackson.version>2.18.2</jackson.version>
         <poi.version>5.3.0</poi.version>
         <slf4j.version>2.0.17</slf4j.version>
@@ -38,12 +37,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${restassured.version}</version>
         </dependency>
 
         <dependency>
@@ -82,19 +75,6 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>9.1.0</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.3.232</version>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
     <build>
