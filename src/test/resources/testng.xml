@@ -2,14 +2,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Flipkart Automation Suite" parallel="methods" thread-count="2" data-provider-thread-count="2">
     <listeners>
-        <listener class-name="com.sourav.framework.listeners.TestListener"/>
+        <listener class-name="com.mehak.framework.listeners.TestListener"/>
     </listeners>
 
     <test name="flipkart-smoke-suite">
         <packages>
-            <package name="com.sourav.flipkart.tests"/>
-            <package name="com.sourav.framework.ai"/>
-            <package name="com.sourav.framework.listeners"/>
+            <package name="com.mehak.flipkart.tests"/>
+            <package name="com.mehak.framework.ai"/>
+            <package name="com.mehak.framework.listeners"/>
         </packages>
     </test>
 </suite>
