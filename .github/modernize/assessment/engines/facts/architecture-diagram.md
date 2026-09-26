@@ -2,6 +2,8 @@
 
 This document describes the current Selenium and TestNG UI automation framework. It focuses on browser-driven Flipkart scenarios, shared test infrastructure, and optional AI-assisted failure reporting.
 
+Production utilities are grouped under `com.mehak.framework`; Flipkart page objects, components, and UI tests are under `com.mehak.flipkart`.
+
 ## Application Architecture
 
 <!-- mermaid-checked: no \n, no em-dash/en-dash, no {} in labels, subgraphs are id["label"], arrows are -->|"label"|, all subgraphs closed by end, ids unique -->
@@ -118,17 +120,17 @@ flowchart LR
 
 | Component | Layer | Type | Responsibility |
 |---|---|---|---|
-| Flipkart TestNG tests | Test Layer | Test cases | Validate safe public UI flows and assert outcomes |
-| `BaseTest` | Test Layer | Test fixture | Load configuration and manage suite and method lifecycle |
+| `com.mehak.flipkart.tests` | Test Layer | Test cases | Validate safe public UI flows and assert outcomes |
+| `com.mehak.flipkart.tests.BaseTest` | Test Layer | Test fixture | Load configuration and manage suite and method lifecycle |
 | Test data utilities | Test Layer | Utility | Provide test inputs from project resources |
-| Flipkart page objects | Page Model | Page objects | Encapsulate home, search, product, and cart interactions |
-| Header and product components | Page Model | UI components | Reuse search header and product-card behavior |
-| `BasePage` | Page Model | Base class | Share browser actions and explicit-wait helpers |
-| `DriverFactory` | Framework Infrastructure | Factory | Create and clean up thread-local browser sessions |
-| `ConfigManager` | Framework Infrastructure | Configuration | Load environment settings and system-property overrides |
-| `WaitUtils` | Framework Infrastructure | Utility | Apply explicit waits for browser state and elements |
-| `TestListener` | Cross-Cutting Services | TestNG listener | Observe test outcomes, capture failures, and optionally analyze them |
-| `ExtentReportManager` | Cross-Cutting Services | Reporting service | Create, update, and flush HTML test reports |
-| `ScreenshotUtils` | Cross-Cutting Services | Utility | Capture browser screenshots for failed tests |
-| `AiFailureAnalyzer` | Cross-Cutting Services | Analyzer | Build provider configuration and analyze sanitized failure context |
-| AI provider | Cross-Cutting Services | Provider interface | Isolate optional Jev and mock analysis implementations |
+| `com.mehak.flipkart.pages` | Page Model | Page objects | Encapsulate home, search, product, and cart interactions |
+| `com.mehak.flipkart.components` | Page Model | UI components | Reuse search header and product-card behavior |
+| `com.mehak.flipkart.pages.BasePage` | Page Model | Base class | Share browser actions and explicit-wait helpers |
+| `com.mehak.framework.driver.DriverFactory` | Framework Infrastructure | Factory | Create and clean up thread-local browser sessions |
+| `com.mehak.framework.config.ConfigManager` | Framework Infrastructure | Configuration | Load environment settings and system-property overrides |
+| `com.mehak.framework.waits.WaitUtils` | Framework Infrastructure | Utility | Apply explicit waits for browser state and elements |
+| `com.mehak.framework.listeners.TestListener` | Cross-Cutting Services | TestNG listener | Observe test outcomes, capture failures, and optionally analyze them |
+| `com.mehak.framework.reporting.ExtentReportManager` | Cross-Cutting Services | Reporting service | Create, update, and flush HTML test reports |
+| `com.mehak.framework.utilities.ScreenshotUtils` | Cross-Cutting Services | Utility | Capture browser screenshots for failed tests |
+| `com.mehak.framework.ai.AiFailureAnalyzer` | Cross-Cutting Services | Analyzer | Build provider configuration and analyze sanitized failure context |
+| `com.mehak.framework.ai.AiProvider` | Cross-Cutting Services | Provider interface | Isolate optional Jev and mock analysis implementations |
