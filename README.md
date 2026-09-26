@@ -1,10 +1,10 @@
 # Selenium Automation Framework
 
-A Selenium and TestNG automation framework built with Java 25 and Maven for Flipkart UI testing, reporting, configuration, and optional AI failure analysis.
+A Selenium and TestNG automation framework built with Java 25 and Maven for Flipkart UI testing. It includes browser configuration, HTML reporting, and optional AI-assisted failure analysis.
 
 ## Overview
 
-This framework isolates Flipkart-specific page objects and test logic while keeping its Selenium, reporting, and configuration infrastructure reusable. Its tests focus on safe public UI validation against the Flipkart website.
+This is a UI automation project, not an application backend. It has no application database layer or standalone API test module. TestNG runs browser-driven checks of Flipkart's public UI; optional AI failure analysis is the only outbound service integration.
 
 ## 🔗 Demo & Reports
 
@@ -28,34 +28,45 @@ AI failure analysis is optional and disabled by default. When enabled, failed Te
 
 ## Architecture
 
-```text
-com.sourav.framework
-├── ai
-├── config
-├── driver
-├── listeners
-├── reporting
-├── utilities
-└── waits
+TestNG starts each UI test with a browser managed by `DriverFactory`. Tests exercise Flipkart through page objects and reusable page components, while shared framework utilities provide configuration, explicit waits, test data, and browser lifecycle management. A TestNG listener records results and failure screenshots in ExtentReports. If explicitly enabled, the listener can send bounded, redacted failure context to TypeSafe Jev for analysis.
 
-com.sourav.flipkart
-├── components
-├── pages
-├── tests
-└── testdata
+The application has no database, cache, or general-purpose API client. Browser traffic goes to the public Flipkart website, and generated reports and screenshots are local files.
+
+The high-level architecture and component relationship diagrams are documented in [Architecture Diagrams](.github/modernize/assessment/engines/facts/architecture-diagram.md).
+
+### Project Structure
+
+```text
+src/main/java/com/sourav/framework/
+├── ai/          Optional failure analysis providers
+├── config/      Environment and browser settings
+├── driver/      WebDriver creation and lifecycle
+├── listeners/   TestNG events, reporting, failure analysis
+├── reporting/   ExtentReports setup and test records
+├── utilities/   Screenshots, files, and test data
+└── waits/       Explicit Selenium waits
+
+src/test/java/com/sourav/
+├── flipkart/
+│   ├── components/ Reusable Flipkart UI sections
+│   ├── pages/      Page objects
+│   └── tests/      TestNG UI scenarios
+└── framework/
+    ├── ai/         AI failure-analysis tests
+    └── listeners/  Listener tests
 ```
 
 ## Stack
 
-- Java 25
-- Maven
-- Selenium WebDriver
-- TestNG
-- Apache POI
-- ExtentReports
-- Jackson
-- SLF4J + Logback
-- WebDriverManager
+- Java 25 and Maven
+- Selenium WebDriver 4.27.0
+- TestNG 7.10.2
+- WebDriverManager 5.9.2
+- ExtentReports 5.1.2
+- Apache POI 5.3.0 and Jackson 2.18.2
+- SLF4J 2.0.17 with Logback 1.5.16
+- Chrome, Edge, or Firefox for browser execution
+- Optional TypeSafe Jev integration using Java's HTTP client
 
 ## Folder Structure
 
